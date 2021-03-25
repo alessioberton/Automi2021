@@ -32,10 +32,12 @@ void AbstractDFA::reset() {
  * @param letter
  *            The current input.
  */
+
+// UNICA FUNZIONE DEGNA DI NOTA. SONO 5 RIGHE IN CROCE PARLANTI E BANALI, NESSUN BISOGNO DI SPIEGARLE
 void AbstractDFA::doStep(char letter) {
-	tpair tp = tpair(currentState, letter);
-	auto state = transitions.find(tp);
-	auto &value = (*state).first;
+	const tpair tp = tpair(currentState, letter);
+	const auto state = transitions.find(tp);
+	const auto &value = (*state).first;
 	if (value.second) currentState = state->second;
 	else
 		currentState = -1;
@@ -125,13 +127,9 @@ CommentDFA::CommentDFA() : AbstractDFA(5) {
  * @param letter
  *            The current input.
  */
-//
-//* single line comment that starts with // and ends with a newline,
-//* multiline comments that starts with (* and ends with *), and
-//* multiline comments that starts with { and ends with }
 
-//       (**repeat*)
 
+// CODICE MOLTO PARLANTE, NESSUN BISOGNO DI COMMENTARE DEI SEMPLICI IF ELSE
 void CommentDFA::doStep(char letter) {
 	switch (letter) {
 		case '/':
@@ -176,7 +174,8 @@ void CommentDFA::doStep(char letter) {
 		case '}':
 			if (currentState == 5) currentState = -1;
 			if (currentState == 7) currentState = 6;
-			else AbstractDFA::doStep(letter);
+			else
+				AbstractDFA::doStep(letter);
 			break;
 		default:
 			if (currentState == 0 || currentState == 5) currentState = -1;

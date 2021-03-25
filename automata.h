@@ -14,7 +14,6 @@ typedef std::pair<int, char> tpair;
 class AbstractDFA {
 
 public:
-	int nStates;
 	int finalStates[50]{};
 	map<tpair, int> transitions{};
 	int currentState;
