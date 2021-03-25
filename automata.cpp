@@ -10,7 +10,6 @@ using namespace std;
  *            Number of states in the DFA.
  */
 AbstractDFA::AbstractDFA(int noStates) {
-	nStates = noStates;
 	currentState = 0;
 	for (int &finalState : finalStates) finalState = 0;
 	transitions = map<tpair, int>();
